@@ -16,7 +16,7 @@ export default function App() {
     </View>
   );
 }
-
+ //start of StyleSheet Object
 const styles = StyleSheet.create({
 
 });
