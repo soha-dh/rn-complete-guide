@@ -35,7 +35,7 @@ export default function App() {
       //* 02-13_End
       //? styling list items 
       //* 02-14_End
-      //? ScrollView for page or part of data
+      //? ScrollView for page or part of data (just use it for short data 20< item )
       */}
 
       <ScrollView>
