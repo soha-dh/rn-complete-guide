@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { StyleSheet, Text, View, TextInput, Button } from 'react-native';
+import { StyleSheet, Text, View, TextInput, Button, ScrollView } from 'react-native';
 
 export default function App() {
   //start for using state
@@ -34,11 +34,13 @@ export default function App() {
       //? each Array item should have unique key -> key={goal} , goal cause still don't have id
       //* 02-13_End
       //? styling list items 
+      //* 02-14_End
+      //? ScrollView for page or part of data
       */}
 
-      <View>
+      <ScrollView>
         {courseGoals.map((goal) => <View key={goal} style={styles.listItem}><Text>{goal}</Text></View>)}
-      </View>
+      </ScrollView>
       {/* //*  */}
     </View>
   );
