@@ -6,18 +6,18 @@ export default function App() {
   const [enteredGoal, setEnteredGoal] = useState('');
   const [courseGoals, setCourseGoals] = useState([]);
 
-  // function goalInputHandler(enterdText) {
-  //   setEnteredGoal(enterdText);
-  // }
+  //// function goalInputHandler(enterdText) {
+  ////   setEnteredGoal(enterdText);
+  //// }
   const goalInputHandler = (enterdText) => {
     setEnteredGoal(enterdText);
   }
 
-  // add to exist goals new one used ... for refrencetype
-  // const addGoalHandler = () => { setCourseGoals([...courseGoals,enteredGoal]) }  ***the code like this has no guranty to sow always the last state on realtime for making sure about that use callback function for it 
+  //// add to exist goals new one used ... for refrencetype
+  //// const addGoalHandler = () => { setCourseGoals([...courseGoals,enteredGoal]) }  ***the code like this has no guranty to sow always the last state on realtime for making sure about that use callback function for it 
 
-  // const addGoalHandler = () => { setCourseGoals(currentGoals => { return [...courseGoals, enteredGoal] }) }
-  //shorter way
+  //// const addGoalHandler = () => { setCourseGoals(currentGoals => { return [...courseGoals, enteredGoal] }) }
+  //// shorter way
   const addGoalHandler = () => { setCourseGoals(currentGoals => [...courseGoals, enteredGoal]) }
 
   return (
@@ -27,14 +27,21 @@ export default function App() {
 
         <Button title="ADD" onPress={addGoalHandler} />
       </View>
+      {/* 
+      //* 02-12_End
+      //? output the resoult
+      //? this is map couse courseGoals is [] Array
+      //? each Array item should have unique key -> key={goal} , goal cause still don't have id
+      */}
       <View>
-
+        {courseGoals.map((goal) => <Text key={goal}>{goal}</Text>)}
       </View>
-
+      {/* //*  */}
     </View>
   );
 }
-//start of StyleSheet Object (All-Styles)
+
+//? start of StyleSheet Object (All-Styles) 
 const styles = StyleSheet.create({
   screen: {
     padding: 30
@@ -45,3 +52,6 @@ const styles = StyleSheet.create({
   input: { width: '80%', borderColor: 'black', borderWidth: 1, padding: 10 }
 
 });
+
+
+
