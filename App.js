@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { StyleSheet, Text, View, TextInput, Button, ScrollView, FlatList } from 'react-native';
+import GoalItem from './components/GoalItem';
 
 export default function App() {
   //start for using state
@@ -54,7 +55,10 @@ export default function App() {
       //? REPLACE ScrollView with FlatList 
       */}
 
-      <FlatList keyExtractor={(item, index) => item.id} data={courseGoals} renderItem={itemData => (<View style={styles.listItem}><Text>{itemData.item.value}</Text></View>)} />
+      {/* ////<FlatList keyExtractor={(item, index) => item.id} data={courseGoals} renderItem={itemData => (<View style={styles.listItem}><Text>{itemData.item.value}</Text></View>)} /> */}
+
+      <FlatList keyExtractor={(item, index) => item.id} data={courseGoals} renderItem={itemData => <GoalItem title={itemData.item.value} />} />
+
       {/* //* */}
     </View>
   );
