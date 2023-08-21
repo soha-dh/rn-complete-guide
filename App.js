@@ -4,76 +4,37 @@ import GoalItem from './components/GoalItem';
 import GoalInput from './components/GoalInput'; //*02-18
 
 export default function App() {
-  //start for using state
+
 
   const [courseGoals, setCourseGoals] = useState([]);
 
-  //// function goalInputHandler(enterdText) {
-  ////   setEnteredGoal(enterdText);
-  //// }
-
-
-  //// add to exist goals new one used ... for refrencetype
-  //// const addGoalHandler = () => { setCourseGoals([...courseGoals,enteredGoal]) }  ***the code like this has no guranty to sow always the last state on realtime for making sure about that use callback function for it 
-
-  //// const addGoalHandler = () => { setCourseGoals(currentGoals => { return [...courseGoals, enteredGoal] }) }
-  //// shorter way
-  //* 02-15
-  //? This item now cant be just normal text its need to be a object with key and value 
-  //| can use uid exept than key 02-15_05:50
-  //// const addGoalHandler = () => { setCourseGoals(currentGoals => [...courseGoals, enteredGoal]) }
-  //* 02-18
-  //? now this item need to resive paraps and we named it goalTitle
+  //?  ( currentGoals ) used just for making callback function the result will change on setCourseGoals
   const addGoalHandler = goalTitle => { setCourseGoals(currentGoals => [...courseGoals, { id: Math.random().toString(), value: goalTitle }]) }
-  //*
+
+
+  //* 02-20
+  //? this is for Delete ->resive goalId and filter it
+
+  const removeGoalHandler = goalId => {
+    setCourseGoals(currentGoals => {
+      return currentGoals.filter((goal) => goal.id !== goalId);
+    });
+  }
+
   return (
     <View style={styles.screen}>
-
-      {/* 
-      //* 02-12_End
-      //? output the resoult
-      //? this is map couse courseGoals is [] Array
-      //? each Array item should have unique key -> key={goal} , goal cause still don't have id
-      //* 02-13_End
-      //? styling list items 
-      //* 02-14_End
-      //? ScrollView for page or part of data (just use it for short data 20 < item )
-      */}
-
-      {/* 
-      //// <ScrollView>
-      ////   {courseGoals.map((goal) => <View key={goal} style={styles.listItem}><Text>{goal}</Text></View>)}
-      //// </ScrollView> 
-      */}
-      {/* //*  */}
-      {/* 
-      //* 02-15_End
-      //? REPLACE ScrollView with FlatList 
-      */}
-
-      {/* 
-      //*02-18 
-      //? pass the addGoalHandler funtion to this component
-      */}
       <GoalInput onAddGoal={addGoalHandler} />
-      {/* //* */}
-      {/* ////<FlatList keyExtractor={(item, index) => item.id} data={courseGoals} renderItem={itemData => (<View style={styles.listItem}><Text>{itemData.item.value}</Text></View>)} /> */}
-
-      <FlatList keyExtractor={(item, index) => item.id} data={courseGoals} renderItem={itemData => <GoalItem onDelete={() => console.log('Does that work')} title={itemData.item.value} />} />
-
-      {/* //* */}
+      <FlatList
+        keyExtractor={(item, index) => item.id}
+        data={courseGoals}
+        renderItem={itemData => <GoalItem id={itemData.item.id} onDelete={removeGoalHandler} title={itemData.item.value} />} />
     </View>
   );
 }
-
-//? start of StyleSheet Object (All-Styles) 
 const styles = StyleSheet.create({
   screen: {
     padding: 30
   },
-
-
-
 });
 
 

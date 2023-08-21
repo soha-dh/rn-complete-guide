@@ -1,18 +1,13 @@
 import React from "react";
 import { View, Text, StyleSheet, TouchableOpacity, TouchableHighlight } from 'react-native';
 
-//? can use TouchableOpacity, TouchableHighlight TouchableWithoutFeedback
-
-//// const GoalItem = props => { return <View style={styles.listItem}><Text>{itemData.item.value}</Text></View> };
 const GoalItem = props => {
     return (
-        <TouchableOpacity onPress={props.onDelete} >
+        <TouchableOpacity onPress={props.onDelete.bind(this, props.id)} >
             <View style={styles.listItem}><Text>{props.title}</Text></View>
         </TouchableOpacity>
     )
 };
-
-
 
 const styles = StyleSheet.create({
     listItem: {
