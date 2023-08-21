@@ -10,7 +10,10 @@ export default function App() {
   const [isAddMode, setIsAddMode] = useState(false)
 
   //?  ( currentGoals ) used just for making callback function the result will change on setCourseGoals
-  const addGoalHandler = goalTitle => { setCourseGoals(currentGoals => [...courseGoals, { id: Math.random().toString(), value: goalTitle }]) }
+  const addGoalHandler = goalTitle => {
+    setCourseGoals(currentGoals => [...courseGoals, { id: Math.random().toString(), value: goalTitle }]);
+    setIsAddMode(false);
+  };
 
 
   //* 02-20
@@ -22,10 +25,15 @@ export default function App() {
     });
   }
 
+  const CancelGoalAddtioonHandler = () => {
+    setIsAddMode(false);
+  }
+
+
   return (
     <View style={styles.screen}>
       <Button title="Add New Goal" onPress={() => setIsAddMode(true)} />
-      <GoalInput visible={isAddMode} onAddGoal={addGoalHandler} />
+      <GoalInput visible={isAddMode} onAddGoal={addGoalHandler} onCancel={CancelGoalAddtioonHandler} />
       <FlatList
         keyExtractor={(item, index) => item.id}
         data={courseGoals}
