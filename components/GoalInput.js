@@ -1,6 +1,6 @@
 //* 02-18
 import React, { useState } from 'react';
-import { View, TextInput, Button, StyleSheet } from 'react-native';
+import { View, TextInput, Button, StyleSheet, Modal } from 'react-native';
 
 const GoalInput = props => {
 
@@ -10,16 +10,14 @@ const GoalInput = props => {
         setEnteredGoal(enterdText);
     }
 
-    //? trasfer the button and text input in this seprate file
+
     return (
-        <View style={styles.inputContainer} >
-            <TextInput placeholder='Course Goal' style={styles.input} onChangeText={goalInputHandler} value={enteredGoal} />
-            {/* 
-    //? onAddGoal resived from app file and run addGoalHandler function on app.js
-    //| we need to pass parametr to this function thats why we used bind method by this way
-*/}
-            <Button title="ADD" onPress={props.onAddGoal.bind(this, enteredGoal)} />
-        </View>
+        <Modal visible={props.visible} animationType='slide' >
+            <View style={styles.inputContainer} >
+                <TextInput placeholder='Course Goal' style={styles.input} onChangeText={goalInputHandler} value={enteredGoal} />
+                <Button title="ADD" onPress={props.onAddGoal.bind(this, enteredGoal)} />
+            </View>
+        </Modal>
     );
 
 };
